@@ -36,10 +36,10 @@ export default class Register extends React.Component{
                   console.log("Email : ",this.state.email);
                   console.log("Password : ",this.state.password);
                    try {
-             AsyncStorage.setItem('email2', this.state.email);
-             AsyncStorage.setItem('password2', this.state.password);
-             AsyncStorage.setItem('name2', this.state.name);
-            this.props.navigation.navigate('Login')
+             AsyncStorage.setItem('email', this.state.email);
+             AsyncStorage.setItem('password', this.state.password);
+             AsyncStorage.setItem('name', this.state.name);
+            this.props.navigation.navigate('Orders')
           } catch (error) {
             Console.log("Can't Save Data", error)
           }
@@ -66,19 +66,7 @@ export default class Register extends React.Component{
         }
     
       render(){
-        var data = this.state.jsonData.services.map(function(item) {
-            return {
-              key: item.id,
-              label: item.name,
-              checkboxx:item.checked
-            };
-          });
-          var orderName = [];
-          console.log(data);
-          for (let i=0;i<data.length;i++){
-          orderName.push(data[i].checked);
-          }
-          console.log("The Order Name : ",orderName);
+        
 
         return(
           <View style={styles.container}>  
@@ -127,20 +115,6 @@ export default class Register extends React.Component{
     underlayColor='#fff'>
       <Text style={[styles.submitText]}>Register</Text>
   </TouchableHighlight>
-           {/* <CheckBox
-              title={r.label}
-               checked={this.state.checked}
-               style={styles.checkBoxText}
-                onPress={() => this.setState({checked: !this.state.checked})}/> 
-                <Text style={styles.checkBoxText} >{displayName}</Text> */}
-{/* <View>    
-           {data.map(r => <CheckBox
-              title={r.label}
-               checked={r.checkboxx}
-               style={styles.checkBoxText}
-                onPress={() => this.setState({checked: !r.checkboxx})}/> )}    
-        </View> */}
-
         </View>
         );
       }

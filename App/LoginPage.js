@@ -5,7 +5,7 @@ import { CheckBox } from 'react-native-elements'
 export default class Login extends React.Component{
     constructor(props){
       super(props);
-      this.state = { isShowingText:true,checked:false,email:"",password:""};
+      this.state = { isShowingText:true,checked:false,savedPassword:"",savedEmail:"",email:"",password:""};
       
     }
 
@@ -19,35 +19,37 @@ export default class Login extends React.Component{
         { cancelable: false }
       )
     }
-
+    
     LoginBtnPressed(){
-     
+      email="ofathi@betahubs.net"
+      password="123456"
        if (this.validateEmail(this.state.email)){
-      //   if (this.state.email==email && this.state.password==password){
+        if (this.state.email==email && this.state.password==password){
               // console.log("Button Pressed");
               // console.log("Email : ",this.state.email);
               // console.log("Password : ",this.state.password);
-              try {
-                let name2 =  AsyncStorage.getItem('name2');
-                 let savedEmail =  AsyncStorage.getItem('email2').then((emailValue)=> {
-                  this.state.email=emailValue; 
-                 // console.log("Email : ",emailValue);
-                });
-                 let savedPassword = AsyncStorage.getItem('password2').then((passwordValue)=> {
-                  this.state.password=passwordValue;
-                 // console.log("password : ",passwordValue);
-                });
+              // try {
+              //   let name2 =  AsyncStorage.getItem('name2');
+              //    let savedEmail2 =  AsyncStorage.getItem('email2').then((emailValue)=> {
+              //     console.log("Email Value: ",emailValue);
+              //     return emailValue
+              //   });
+              //    let savedPassword2 = AsyncStorage.getItem('password2').then((passwordValue)=> {
+              //     this.state.savedPassword=passwordValue;
+              //     console.log("password Value: ",passwordValue);
+              //     return passwordValue;
+              //   });
                 
                 console.log("Button Pressed");
-                console.log("email : ",email);
-                console.log("password : ",password);
-
-              } catch (error) {
-                console.log("Cannot get Data",error);
-              }
-      // }else{
-      //      this.MakeAlert("Invalid Email or Password");
-    //  }
+                console.log("email : ",this.state.email);
+                console.log("password : ",this.state.password);
+                this.props.navigation.navigate('Orders')
+              // } catch (error) {
+              //   console.log("Cannot get Data",error);
+              // }
+     }else{
+           this.MakeAlert("Invalid Email or Password");
+      }
     }else{
         this.MakeAlert("Invalid Email Pattern");
       }
@@ -63,13 +65,13 @@ export default class Login extends React.Component{
       let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
       if(reg.test(text) === false)
       {
-      console.log("Email is Not Correct");
+     // console.log("Email is Not Correct");
       this.setState({email:text})
       return false;
         }
       else {
         this.setState({email:text})
-        console.log("Email is Correct");
+      //  console.log("Email is Correct");
         return true
       }
       }
@@ -84,6 +86,7 @@ export default class Login extends React.Component{
         <TextInput
         placeholder="Enter your Email"
         keyboardType={'email-address'}
+        autoCapitalize={'none'}
         clearButtonMode={'while-editing'}
             style={{height: 40,borderBottomColor:'green',borderBottomWidth:1,width:300,fontSize:20}}
             onChangeText={(text) =>this.validateEmail(text)}
