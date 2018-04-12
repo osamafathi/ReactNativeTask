@@ -24,29 +24,8 @@ export default class Login extends React.Component{
       email="ofathi@betahubs.net"
       password="123456"
        if (this.validateEmail(this.state.email)){
-        if (this.state.email==email && this.state.password==password){
-              // console.log("Button Pressed");
-              // console.log("Email : ",this.state.email);
-              // console.log("Password : ",this.state.password);
-              // try {
-              //   let name2 =  AsyncStorage.getItem('name2');
-              //    let savedEmail2 =  AsyncStorage.getItem('email2').then((emailValue)=> {
-              //     console.log("Email Value: ",emailValue);
-              //     return emailValue
-              //   });
-              //    let savedPassword2 = AsyncStorage.getItem('password2').then((passwordValue)=> {
-              //     this.state.savedPassword=passwordValue;
-              //     console.log("password Value: ",passwordValue);
-              //     return passwordValue;
-              //   });
-                
-                console.log("Button Pressed");
-                console.log("email : ",this.state.email);
-                console.log("password : ",this.state.password);
+        if (this.state.email==email && this.state.password==password){       
                 this.props.navigation.navigate('Orders')
-              // } catch (error) {
-              //   console.log("Cannot get Data",error);
-              // }
      }else{
            this.MakeAlert("Invalid Email or Password");
       }
@@ -56,7 +35,6 @@ export default class Login extends React.Component{
   }
 
     RegisterBtnPressed(){
-      console.log("Button Pressed");
       this.props.navigation.navigate('Register')
     }
 
@@ -65,23 +43,22 @@ export default class Login extends React.Component{
       let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
       if(reg.test(text) === false)
       {
-     // console.log("Email is Not Correct");
       this.setState({email:text})
       return false;
         }
       else {
         this.setState({email:text})
-      //  console.log("Email is Correct");
         return true
       }
       }
 
       render(){
+        const logo='../betahubsLogo.png'
         return(
           <View style={styles.container}>
           <Text style={{top:-60}}>Email:ofathi@betahubs.net</Text>
           <Text style={{top:-55}}>Password:123456 </Text>
-            <Image source={require('../betahubsLogo.png')} style={{width: 300, height: 120,top:-50}}/>
+            <Image source={require(logo)} style={{width: 300, height: 120,top:-50}}/>
         
         <TextInput
         placeholder="Enter your Email"
@@ -115,13 +92,6 @@ export default class Login extends React.Component{
       title="Register"
       color="green"
     /> </View>
-     
-           {/* <CheckBox
-              title='Click Here'
-               checked={this.state.checked}
-               style={styles.checkBoxText}
-                onPress={() => this.setState({checked: !this.state.checked})}/> 
-                <Text style={styles.checkBoxText} >{displayName}</Text> */}
         </View>
         );
       }

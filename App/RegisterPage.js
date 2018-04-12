@@ -7,15 +7,7 @@ import RootNavigator from './RootNavigator'
 export default class Register extends React.Component{
     constructor(props){
       super(props);
-      this.state = { isShowingText:true,name:"",email:"",confirmPassword:"",password:"",jsonData : {
-        "services": [
-          { "id": 1, "name": "Meat",checked:false },
-          { "id": 2, "name": "Chicken",checked:false },
-          { "id": 3, "name": "Bread",checked:false },
-          { "id": 4, "name": "Pepsi",checked:false },
-          { "id": 5, "name": "Fries",checked:false }
-        ]}
-    };  
+      this.state = { isShowingText:true,name:"",email:"",confirmPassword:"",password:""};  
     }
 
     MakeAlert(msg){
@@ -32,9 +24,6 @@ export default class Register extends React.Component{
        
         if (this.validateEmail(this.state.email)){
             if (this.state.password==this.state.confirmPassword){
-                  console.log("Button Pressed");
-                  console.log("Email : ",this.state.email);
-                  console.log("Password : ",this.state.password);
                    try {
              AsyncStorage.setItem('email', this.state.email);
              AsyncStorage.setItem('password', this.state.password);
@@ -107,8 +96,6 @@ export default class Register extends React.Component{
             value={this.state.text}
           />
           <Text></Text>
-             <Text>{"\n"} Email State : {this.state.email} {"\n"}</Text>
-             <Text> Password State : {this.state.password}</Text> 
              <TouchableHighlight
     style={styles.submit}
     onPress={this.RegisterBtnPressed.bind(this)}
